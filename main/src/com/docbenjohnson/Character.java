@@ -37,7 +37,14 @@ public class Character {
         );
     }
 
-    static Character roll() {
+    public Character(String name, String race, String profession, Map<String, Integer> stats) {
+        this.stats = stats;
+        this.name = name;
+        this.race = race;
+        this.profession = profession;
+    }
+
+    public static Character roll() {
         String profession = professions.get(rand(professions));
         String race = races.get(rand(races));
         System.out.println("Class: " + profession);
@@ -74,8 +81,10 @@ public class Character {
                 System.out.print(modifier + " as " + race + " ");
             }
             System.out.println("Total: " + sum);
+            stats.put(stat, sum);
         }
-        return null;
+
+        return new Character("Rando Calrissian", race, profession, stats);
     }
 
     public static void main(String[] args) {
